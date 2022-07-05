@@ -1,9 +1,0 @@
-<h1>Loading Accounts...</h1>
-<script>
-  fetch(`http://${window.location.host}/account/hasAccounts`)
-    .then((response) => response.text())
-    .then((data) => {
-      // console.log("A", data);
-      window.location.pathname = "/account/signup?first=true";
-    });
-</script>

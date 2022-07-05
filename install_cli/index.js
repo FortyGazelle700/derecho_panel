@@ -232,6 +232,23 @@ if (program.args[0]) {
       } else {
         process.exit(0);
       }
+      if (createDirectories && !fs.existsSync(path)) {
+        try {
+          fs.mkdirSync(path, { recursive: true, mode: 777 });
+        } catch (err) {
+          console.log(
+            style
+              .redBright(
+                `Error!!! Unable to create folder(s) ${path}. Operation not permitted, no permissions to create the folder(s). Here are things you can try
+                  1. Create a folder yourself
+                  2. Give yourself permissions to create the folder or use sudo/administrator
+                  3. Try a different folder location`
+              )
+              .removeSpaces(16, 1)
+          );
+          process.exit(1);
+        }
+      }
       shell.cd(path);
       if (shell.ls("").length !== 0) {
         console.log(style.bgRedBright("Files/Directories Exist!!!"));
@@ -244,9 +261,9 @@ if (program.args[0]) {
             ),
             hint: style.gray(
               `
-            [↑]/[↓]: Highlight Option
-            [Space]/[Enter]: Continue
-          `.removeSpaces(4, 2)
+                [↑]/[↓]: Highlight Option
+                [Space]/[Enter]: Continue
+              `.removeSpaces(4, 2)
             ),
             choices: [
               {
@@ -284,23 +301,6 @@ if (program.args[0]) {
           case 2:
             shell.rm("-rf", `${path}`);
             break;
-        }
-      }
-      if (createDirectories && !fs.existsSync(path)) {
-        try {
-          fs.mkdirSync(path, { recursive: true, mode: 777 });
-        } catch (err) {
-          console.log(
-            style
-              .redBright(
-                `Error!!! Unable to create folder(s) ${path}. Operation not permitted, no permissions to create the folder(s). Here are things you can try
-                  1. Create a folder yourself
-                  2. Give yourself permissions to create the folder or use sudo/administrator
-                  3. Try a different folder location`
-              )
-              .removeSpaces(16, 1)
-          );
-          process.exit(1);
         }
       }
       if (!fs.existsSync(path) || !fs.lstatSync(path).isDirectory()) {
