@@ -150,7 +150,7 @@ if (program.args[0]) {
       console.log(
         "If you need help at any help please visit our GitHub for docs or if something goes wrong please add a GitHub issue!"
       );
-      Console.log("GitHub: ");
+      console.log("GitHub: https://github.com/FortyGazelle700/drecho_panel");
       console.log(
         style.bgGray("Please select the following options for the panel")
       );
@@ -233,8 +233,6 @@ if (program.args[0]) {
         process.exit(0);
       }
       shell.cd(path);
-      // if ()
-      // console.log();
       if (shell.ls("").length !== 0) {
         console.log(style.bgRedBright("Files/Directories Exist!!!"));
         const folderExistsPrompt = await prompts([
@@ -279,15 +277,12 @@ if (program.args[0]) {
         ]);
         switch (folderExistsPrompt.delete_files) {
           default:
-            console.error("HEY! Something went wrong. Please try again");
+          case 0:
+            process.exit(0);
+          case 1:
             break;
           case 2:
             shell.rm("-rf", `${path}`);
-            break;
-          case 1:
-            break;
-          case 0:
-            process.exit(0);
             break;
         }
       }
@@ -375,6 +370,11 @@ if (program.args[0]) {
       );
       shell.rm("-rf", `${path}/drecho_panel/`);
       moveSpinner.succeed();
+      const packagesSpinner = ora("Installing Packages...", {
+        spinner: "arc",
+      }).start();
+      shell.exec("npm install");
+      packagesSpinner.succeed();
       break;
   }
 } else {
