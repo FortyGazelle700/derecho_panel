@@ -150,7 +150,7 @@ if (program.args[0]) {
       console.log(
         "If you need help at any help please visit our GitHub for docs or if something goes wrong please add a GitHub issue!"
       );
-      console.log("GitHub: https://github.com/FortyGazelle700/drecho_panel");
+      console.log("GitHub: https://github.com/FortyGazelle700/derecho_panel");
       console.log(
         style.bgGray("Please select the following options for the panel")
       );
@@ -356,19 +356,19 @@ if (program.args[0]) {
       const gitSpinner = ora("Downloading git repository", {
         spinner: "arc",
       }).start();
-      shell.exec("git clone https://github.com/FortyGazelle700/drecho_panel/");
+      shell.exec("git clone https://github.com/FortyGazelle700/derecho_panel/");
       gitSpinner.succeed();
       const moveSpinner = ora("Moving folders...", {
         spinner: "arc",
       }).start();
       shell.mv(
         "-fn",
-        Array.from(shell.ls("-R", `${path}/drecho_panel/application`)).map(
-          (val) => `${path}/drecho_panel/application/${val}`
+        Array.from(shell.ls("-R", `${path}/derecho_panel/application`)).map(
+          (val) => `${path}/derecho_panel/application/${val}`
         ),
         `${path}\\`
       );
-      shell.rm("-rf", `${path}/drecho_panel/`);
+      shell.rm("-rf", `${path}/derecho_panel/`);
       moveSpinner.succeed();
       const packagesSpinner = ora("Installing Packages...", {
         spinner: "arc",
