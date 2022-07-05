@@ -45,7 +45,7 @@ Please select the following options for the panel
 You may be prompted with the follwoing popup:
 ```
 Files/Directories Exist!!!
-? Would you like to delete all of the files in E:\_Projects\Personal Projects\Minecraft Panel\install_cli\panel? » 
+? Would you like to delete all of the files in C:\Users\My User\panel? » 
     [↑]/[↓]: Highlight Option
     [Space]/[Enter]: Continue
   
