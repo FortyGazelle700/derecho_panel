@@ -1,4 +1,4 @@
-# Drecho Panel
+# Derecho Panel
 
 ## Installation
 ### Requirements
