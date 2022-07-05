@@ -148,6 +148,10 @@ if (program.args[0]) {
         )
       );
       console.log(
+        "If you need help at any help please visit our GitHub for docs or if something goes wrong please add a GitHub issue!"
+      );
+      Console.log("GitHub: ");
+      console.log(
         style.bgGray("Please select the following options for the panel")
       );
       console.log();
