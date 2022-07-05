@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Server Panel</title>
+
+    <!-- Load Our Default Styles -->
+    <link rel="stylesheet" href="/resource/styles/index.css" />
+
+    <!-- Load Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+
+    <!-- Load Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Load ECharts for amazing charts -->
+    <script
+      src="https://unpkg.com/echarts@5.3.3/dist/echarts.js"
+      defer
+    ></script>
+
+    <!-- Load Custom Resources for this application -->
+    <script src="/resource/scripts/appInit.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a class="icon">ICON</a>
+      <div class="nav-container">
+        <div class="menus">
+          <div class="menu main">
+            <a href="javascript:void(0)" class="menu-swap"> Server Menu</a>
+            <div class="scrollable">
+              <a href="../main" class="active"
+                ><i class="bi bi-house"></i> Home</a
+              >
+              <a href="../server/main"
+                ><i class="bi bi-hdd-network"></i> Servers</a
+              >
+              <a href="../settings/api_keys"
+                ><i class="bi bi-key"></i> API Keys</a
+              >
+              <hr />
+              <a href="../support"
+                ><i class="bi bi-question-circle"></i> Support</a
+              >
+              <a href="../about"><i class="bi bi-info-circle"></i> About</a>
+              <a href="../settings/account"
+                ><i class="bi bi-person"></i> Account</a
+              >
+              <a href="../settings/"><i class="bi bi-gear"></i> Settings</a>
+              <a href="../settings/account/logout"
+                ><i class="bi bi-box-arrow-left"></i> Logout</a
+              >
+            </div>
+          </div>
+          <div class="menu server">
+            <a href="javascript:void(0)" class="menu-swap"> Main Menu</a>
+            <div class="scrollable">
+              <a href="../main" class="active"
+                ><i class="bi bi-house"></i> Home</a
+              >
+              <a href="../server/terminal"
+                ><i class="bi bi-terminal"></i> Terminal</a
+              >
+              <a href="../server/files"><i class="bi bi-folder"></i> Files</a>
+              <a href="../server/files"
+                ><i class="bi bi-plus-circle"></i> Plugins</a
+              >
+              <a href="../server/files"
+                ><i class="bi bi-clock"></i> Schedules</a
+              >
+              <a href="../server/files"
+                ><i class="bi bi-cloud-plus"></i> Backups</a
+              >
+              <a href="../server/files"
+                ><i class="bi bi-file-code"></i> VS Code</a
+              >
+              <a href="../server/files"><i class="bi bi-gear"></i> Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>{{ app-content }}</main>
+  </body>
+</html>

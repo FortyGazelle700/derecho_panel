@@ -1,0 +1,51 @@
+<section><h1>Welcome to the panel!</h1></section>
+<section id="server-list">
+  <h1>Servers</h1>
+  <div class="servers">
+    <div class="server">
+      <div class="server-main">
+        <div class="server-name">
+          <h2>Survival Server</h2>
+        </div>
+        <div class="server-info">
+          <div class="server-status">
+            <span class="status-dot offline"></span>
+            <span class="status-text">Offline</span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <a href="../server/view/" class="action"
+            ><i class="bi bi-house bi-fill-hover"></i
+          ></a>
+          <a href="../server/view/terminal" class="action"
+            ><i class="bi bi-terminal bi-fill-hover"></i
+          ></a>
+          <a href="../server/view/files?path=/">
+            <i class="bi bi-folder bi-fill-hover"></i>
+          </a>
+          <a href="../server/view/backup?new"
+            ><i class="bi bi-cloud-plus bi-fill-hover"></i
+          ></a>
+          <a href="../server/view/settings">
+            <i class="bi bi-gear bi-fill-hover"></i>
+          </a>
+        </div>
+        <div class="server-stats">
+          <div class="cpuChart"></div>
+          <div class="memChart"></div>
+          <div class="diskChart"></div>
+        </div>
+      </div>
+    </div>
+    <a href="../server/create" class="server">
+      <i class="bi bi-plus-circle"></i>
+    </a>
+  </div>
+</section>
+<script>
+  // document.querySelector("#navHome").classList.add("active");
+  // setActive("navHome");
+  const app = new App();
+  app.initApp({ title: "Server Panel - Home" });
+  app.initNavigation("navHome");
+</script>

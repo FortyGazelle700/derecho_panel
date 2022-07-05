@@ -6,6 +6,7 @@ const program = new Command();
 // const shell = require("shelljs");
 
 import shell from "shelljs";
+shell.config.silent = true;
 
 import fs from "fs";
 
@@ -227,9 +228,68 @@ if (program.args[0]) {
       } else {
         process.exit(0);
       }
+      shell.cd(path);
+      // if ()
+      // console.log();
+      if (shell.ls("").length !== 0) {
+        console.log(style.bgRedBright("Files/Directories Exist!!!"));
+        const folderExistsPrompt = await prompts([
+          {
+            type: "select",
+            name: "delete_files",
+            message: style.yellowBright(
+              `Would you like to delete all of the files in ${path}?`
+            ),
+            hint: style.gray(
+              `
+            [↑]/[↓]: Highlight Option
+            [Space]/[Enter]: Continue
+          `.removeSpaces(4, 2)
+            ),
+            choices: [
+              {
+                title: "Yes",
+                description:
+                  "Yes, delete all files in the folder (Recommended if re-installing)",
+                value: 2,
+              },
+              {
+                title: "No",
+                description:
+                  "No, keep the files in the folder (some of the files may be overwritten)",
+                value: 1,
+              },
+              {
+                title: "STOP",
+                description:
+                  "STOP STOP STOP!!! The process will exit immediately and nothing will happen.",
+                value: 0,
+              },
+            ],
+            initial: 0,
+            onRender() {
+              restyleActions(this);
+              this.outputText = this.outputText?.resetStyle();
+            },
+          },
+        ]);
+        switch (folderExistsPrompt.delete_files) {
+          default:
+            console.error("HEY! Something went wrong. Please try again");
+            break;
+          case 2:
+            shell.rm("-rf", `${path}`);
+            break;
+          case 1:
+            break;
+          case 0:
+            process.exit(0);
+            break;
+        }
+      }
       if (createDirectories && !fs.existsSync(path)) {
         try {
-          fs.mkdirSync(path, { recursive: true });
+          fs.mkdirSync(path, { recursive: true, mode: 777 });
         } catch (err) {
           console.log(
             style
@@ -297,11 +357,20 @@ if (program.args[0]) {
       const gitSpinner = ora("Downloading git repository", {
         spinner: "arc",
       }).start();
-      shell.cd(path);
-      shell.exec("git clone https://github.com/atomicptr/dauntless-builder", {
-        silent: true,
-      });
+      shell.exec("git clone https://github.com/FortyGazelle700/drecho_panel/");
       gitSpinner.succeed();
+      const moveSpinner = ora("Moving folders...", {
+        spinner: "arc",
+      }).start();
+      shell.mv(
+        "-fn",
+        Array.from(shell.ls("-R", `${path}/drecho_panel/application`)).map(
+          (val) => `${path}/drecho_panel/application/${val}`
+        ),
+        `${path}\\`
+      );
+      shell.rm("-rf", `${path}/drecho_panel/`);
+      moveSpinner.succeed();
       break;
   }
 } else {
